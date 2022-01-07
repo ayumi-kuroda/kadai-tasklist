@@ -1,19 +1,9 @@
 <h1>TASK LIST</h1>
-<% if logged_in? %>
   <p>ログイン完了ユーザ: <%= current_user.name %></p>
+   <div> 
+    <%= link_to '新規Taskの投稿', new_task_path %>
     <%= link_to 'Logout', logout_path, method: :delete %>
-  <div>
-    <%= render 'form', task: @task %>
-  </div>
+   </div>
   <div>
     <%= render 'tasks/tasks', tasks: @tasks %>
   </div>
-
-<% else %>
-    <div>
-        <ul>
-          <li><%= link_to 'Sign up now!', signup_path %></li>
-          <li><%= link_to 'Login', login_path %></li>
-        </ul>
-    </div>
-<% end %>

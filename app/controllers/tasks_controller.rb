@@ -1,15 +1,11 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :set_task, only: [:show, :edit, :update]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :show, :edit, :update]
 
   
   def index
-    if logged_in?
       @tasks = current_user.tasks.order(id: :desc)
       @task = current_user.tasks.build  # form_with 用
-      
-    end
   end
 
   def show
@@ -67,10 +63,10 @@ class TasksController < ApplicationController
  end
   
   def correct_user
+    @task = current_user.tasks.find_by(id: params[:id])
     unless @task
       redirect_to root_url
     end
-    @task = current_user.tasks.find_by(id: params[:id])
   end
   
   
