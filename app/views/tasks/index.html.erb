@@ -1,3 +1,4 @@
+<h1>TASK LIST</h1>
 <% if logged_in? %>
   <p>ログイン完了ユーザ: <%= current_user.name %></p>
     <%= link_to 'Logout', logout_path, method: :delete %>
@@ -9,13 +10,10 @@
   </div>
 
 <% else %>
-  <div>
     <div>
-      <h1>TASK LIST</h1>
         <ul>
           <li><%= link_to 'Sign up now!', signup_path %></li>
           <li><%= link_to 'Login', login_path %></li>
         </ul>
     </div>
-  </div>
 <% end %>

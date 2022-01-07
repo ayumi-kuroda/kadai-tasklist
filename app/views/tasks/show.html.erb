@@ -1,3 +1,4 @@
+
 <h1>ユーザー名：<%= current_user.name %></h1>
 <h2>id: <%= @task.id %> のタスク詳細ページ</h2>
 
@@ -5,5 +6,9 @@
 <p>タスク：<%= @task.content %></p>
 
 <%= link_to '一覧に戻る', root_path %>
-<%= link_to '編集', edit_task_path(@task) %>
-<%= link_to '削除', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+
+<% if current_user == @task.user %>
+  <%= link_to '編集', edit_task_path(@task) %>
+  <%= link_to '削除', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<% end %>
+
