@@ -23,7 +23,8 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks
       flash.now[:danger] = 'Task が投稿されませんでした'
-      render :index
+      render :new
+      
     end
   end
 
