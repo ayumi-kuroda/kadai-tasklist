@@ -5,7 +5,6 @@ class TasksController < ApplicationController
   
   def index
       @tasks = current_user.tasks.order(id: :desc)
-      @task = current_user.tasks.build  # form_with 用
   end
 
   def show
@@ -54,13 +53,7 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:content, :status)
   end
- 
- def set_task
-    @task = Task.find(params[:id])
-    unless current_user == @task.user
-      redirect_to root_url
-    end
- end
+
   
   def correct_user
     @task = current_user.tasks.find_by(id: params[:id])
